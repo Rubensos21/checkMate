@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Evidence {
+  id             String   @id @default(uuid())
+  fullName       String   // Nombre extraído por el algoritmo
+  activityType   String   // Escolar, Academia, Vocacional
+  imageUrl       String   // Link a la captura de pantalla
+  status         String   @default("PENDING")
+  confidence     Float    // Puntaje de precisión del algoritmo
+  createdAt      DateTime @default(now())
+}
