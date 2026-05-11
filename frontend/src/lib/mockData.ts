@@ -1,6 +1,6 @@
 import { subDays } from "date-fns";
 
-export type EvidenceStatus = "APPROVED" | "PENDING" | "REJECTED";
+export type EvidenceStatus = "APROBADO" | "PENDIENTE" | "RECHAZADO";
 
 export interface Evidence {
   id: string;
@@ -20,7 +20,7 @@ export const mockEvidence: Evidence[] = [
     fullName: "Juan Pérez García",
     activityType: "Escolar",
     imageUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    status: "APPROVED",
+    status: "APROBADO",
     confidence: 0.98,
     createdAt: subDays(today, 0).toISOString(),
   },
@@ -29,7 +29,7 @@ export const mockEvidence: Evidence[] = [
     fullName: "María Rodríguez",
     activityType: "Academia",
     imageUrl: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    status: "PENDING",
+    status: "PENDIENTE",
     confidence: 0.72,
     createdAt: subDays(today, 1).toISOString(),
   },
@@ -38,7 +38,7 @@ export const mockEvidence: Evidence[] = [
     fullName: "Carlos Mendoza",
     activityType: "Vocacional",
     imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    status: "REJECTED",
+    status: "RECHAZADO",
     confidence: 0.34,
     createdAt: subDays(today, 1).toISOString(),
   },
@@ -47,7 +47,7 @@ export const mockEvidence: Evidence[] = [
     fullName: "Ana Lilia Silva",
     activityType: "Escolar",
     imageUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    status: "APPROVED",
+    status: "APROBADO",
     confidence: 0.95,
     createdAt: subDays(today, 2).toISOString(),
   },
@@ -56,7 +56,7 @@ export const mockEvidence: Evidence[] = [
     fullName: "Roberto Sánchez",
     activityType: "Extracurricular",
     imageUrl: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    status: "PENDING",
+    status: "PENDIENTE",
     confidence: 0.65,
     createdAt: subDays(today, 2).toISOString(),
   },
@@ -65,7 +65,7 @@ export const mockEvidence: Evidence[] = [
     fullName: "Diana Flores",
     activityType: "Academia",
     imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    status: "APPROVED",
+    status: "APROBADO",
     confidence: 0.88,
     createdAt: subDays(today, 3).toISOString(),
   },
@@ -74,7 +74,7 @@ export const mockEvidence: Evidence[] = [
     fullName: "Fernando Gómez",
     activityType: "Vocacional",
     imageUrl: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    status: "REJECTED",
+    status: "RECHAZADO",
     confidence: 0.42,
     createdAt: subDays(today, 3).toISOString(),
   },
@@ -83,7 +83,7 @@ export const mockEvidence: Evidence[] = [
     fullName: "Lucía Ortiz",
     activityType: "Escolar",
     imageUrl: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    status: "APPROVED",
+    status: "APROBADO",
     confidence: 0.91,
     createdAt: subDays(today, 4).toISOString(),
   }

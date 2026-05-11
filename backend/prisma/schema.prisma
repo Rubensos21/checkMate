@@ -7,12 +7,96 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model Evidence {
-  id             String   @id @default(uuid())
-  fullName       String   // Nombre extraído por el algoritmo
-  activityType   String   // Escolar, Academia, Vocacional
-  imageUrl       String   // Link a la captura de pantalla
-  status         String   @default("PENDING")
-  confidence     Float    // Puntaje de precisión del algoritmo
-  createdAt      DateTime @default(now())
+model User {
+  id              String   @id @default(uuid())
+  name            String   // full name (apellidoPaterno apellidoMaterno, nombre)
+  nombre          String?  // first name
+  apellidoPaterno String?  // paternal last name
+  apellidoMaterno String?  // maternal last name
+  email           String   @unique
+  password        String
+  role            String   @default("STUDENT") // STUDENT, TEACHER, ADMIN
+  matricula       String?  @unique             // ID for all roles
+  semester        String?  // e.g. "6" — only for STUDENT
+  group           String?  // e.g. "601" — only for STUDENT
+  createdAt       DateTime @default(now())
+
+  courses      Course[]    @relation("CourseInstructor")
+  enrollments  Enrollment[]
+  submissions  Submission[]
+  activityLogs ActivityLog[]
+}
+
+model Course {
+  id           String   @id @default(uuid())
+  title        String
+  description  String
+  instructorId String
+  instructor   User     @relation("CourseInstructor", fields: [instructorId], references: [id])
+  semester     String?
+  group        String?
+  createdAt    DateTime @default(now())
+
+  enrollments Enrollment[]
+  assignments Assignment[]
+}
+
+model Enrollment {
+  id        String   @id @default(uuid())
+  userId    String
+  courseId  String
+  user      User     @relation(fields: [userId], references: [id])
+  course    Course   @relation(fields: [courseId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, courseId])
+}
+
+model Assignment {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id])
+  dueDate     DateTime
+  createdAt   DateTime @default(now())
+
+  submissions Submission[]
+}
+
+model Submission {
+  id           String     @id @default(uuid())
+  assignmentId String
+  userId       String
+  assignment   Assignment @relation(fields: [assignmentId], references: [id])
+  user         User       @relation(fields: [userId], references: [id])
+
+  imageUrl      String
+  extractedText String?
+  confidence    Float
+  status        String   @default("PENDING") // PENDING, APPROVED, REJECTED
+
+  grade     Float?
+  feedback  String?
+  isLate    Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Setting {
+  id           String   @id @default("global")
+  theme        String   @default("dark")
+  primaryColor String   @default("indigo")
+  updatedAt    DateTime @updatedAt
+}
+
+model ActivityLog {
+  id        String   @id @default(uuid())
+  userId    String
+  action    String
+  details   String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
 }

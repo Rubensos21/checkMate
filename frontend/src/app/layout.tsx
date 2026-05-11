@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/layout/Sidebar";
+import { ConditionalSidebar } from "@/components/layout/ConditionalSidebar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CheckMate | Dashboard",
-  description: "Sistema de Validación Automatizada",
+  title: "Dynamic Cooperation Group",
+  description: "Plataforma de Aprendizaje Corporativo y Educación",
 };
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} antialiased dark`}>
       <body className="min-h-screen flex text-foreground bg-background">
-        <Sidebar className="hidden lg:flex" />
+        <ConditionalSidebar />
         <main className="flex-1 overflow-y-auto">
           {children}
         </main>

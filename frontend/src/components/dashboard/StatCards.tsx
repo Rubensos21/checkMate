@@ -1,18 +1,18 @@
-import { ClipboardList, CheckCircle, Clock, XCircle } from "lucide-react";
+import { BookOpen, Users, Clock, CheckCircle } from "lucide-react";
 
 interface Stats {
-  total: number;
-  approved: number;
-  pending: number;
-  rejected: number;
+  totalCourses: number;
+  totalStudents: number;
+  pendingSubmissions: number;
+  gradedSubmissions: number;
 }
 
 export function StatCards({ stats }: { stats: Stats }) {
   const cards = [
-    { title: "Total Recibidas", value: stats.total, icon: ClipboardList, color: "text-blue-400", bg: "bg-blue-400/10" },
-    { title: "Aprobadas", value: stats.approved, icon: CheckCircle, color: "text-emerald-400", bg: "bg-emerald-400/10" },
-    { title: "Pendientes", value: stats.pending, icon: Clock, color: "text-amber-400", bg: "bg-amber-400/10" },
-    { title: "Rechazadas", value: stats.rejected, icon: XCircle, color: "text-rose-400", bg: "bg-rose-400/10" },
+    { title: "Cursos Activos", value: stats.totalCourses, icon: BookOpen, color: "text-blue-400", bg: "bg-blue-400/10" },
+    { title: "Estudiantes", value: stats.totalStudents, icon: Users, color: "text-purple-400", bg: "bg-purple-400/10" },
+    { title: "Tareas Pendientes", value: stats.pendingSubmissions, icon: Clock, color: "text-amber-400", bg: "bg-amber-400/10" },
+    { title: "Tareas Calificadas", value: stats.gradedSubmissions, icon: CheckCircle, color: "text-emerald-400", bg: "bg-emerald-400/10" },
   ];
 
   return (
