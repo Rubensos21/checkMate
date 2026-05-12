@@ -80,17 +80,8 @@ const createSubmission = async (req, res) => {
     const isLate = new Date() > new Date(assignment.dueDate);
 
     const url = imageUrl || null;
-    let extractedText = comment || 'Entrega sin comentario';
-    let confidence = 0.5;
-
-    if (imageUrl && /\.(jpg|jpeg|png|gif|webp)$/i.test(imageUrl)) {
-      try {
-        extractedText = await ocrService.extractTextFromImage(imageUrl);
-        confidence = extractedText.length > 50 ? 0.9 : 0.5;
-      } catch (e) {
-        console.error('OCR failed', e);
-      }
-    }
+    const extractedText = comment || '';
+    const confidence = 0;
 
     const submission = await prisma.submission.create({
       data: {
