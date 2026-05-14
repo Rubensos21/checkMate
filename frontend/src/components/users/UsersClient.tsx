@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Users, UserPlus, Trash2, Pencil } from "lucide-react";
+import { Users, UserPlus, Trash2, Pencil, Upload } from "lucide-react";
 import { CreateUserModal } from "@/components/modals/CreateUserModal";
 import { EditUserModal } from "@/components/modals/EditUserModal";
+import { BulkUploadModal } from "@/components/modals/BulkUploadModal";
 
 interface User {
   id: string;
@@ -27,6 +28,7 @@ interface UsersClientProps {
 export function UsersClient({ initialUsers, token }: UsersClientProps) {
   const [users, setUsers] = useState<User[]>(initialUsers);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showBulkUploadModal, setShowBulkUploadModal] = useState(false);
   const [editTarget, setEditTarget] = useState<User | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [deleteError, setDeleteError] = useState("");
@@ -40,6 +42,13 @@ export function UsersClient({ initialUsers, token }: UsersClientProps) {
     const u = updated as User;
     setUsers(prev => prev.map(x => x.id === u.id ? u : x));
     setEditTarget(null);
+  };
+
+  const handleBulkUploadSuccess = () => {
+    // Refresh the users list
+    setShowBulkUploadModal(false);
+    // Optionally refresh users from API
+    window.location.reload();
   };
 
   const handleDelete = async (id: string, name: string) => {
@@ -87,6 +96,9 @@ export function UsersClient({ initialUsers, token }: UsersClientProps) {
       {editTarget && (
         <EditUserModal user={editTarget} token={token} onClose={() => setEditTarget(null)} onSuccess={handleUserUpdated} />
       )}
+      {showBulkUploadModal && (
+        <BulkUploadModal token={token} onClose={() => setShowBulkUploadModal(false)} onSuccess={handleBulkUploadSuccess} />
+      )}
 
       <div className="p-6 lg:p-10 w-full">
         <header className="flex justify-between items-end mb-8">
@@ -94,10 +106,16 @@ export function UsersClient({ initialUsers, token }: UsersClientProps) {
             <h2 className="text-3xl font-bold text-white mb-2">Gestión de Usuarios</h2>
             <p className="text-neutral-400">Administra a los docentes y alumnos de la institución.</p>
           </div>
-          <button onClick={() => setShowCreateModal(true)}
-            className="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center gap-2">
-            <UserPlus size={18} /> Nuevo Usuario
-          </button>
+          <div className="flex gap-3">
+            <button onClick={() => setShowBulkUploadModal(true)}
+              className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center gap-2">
+              <Upload size={18} /> Carga Masiva
+            </button>
+            <button onClick={() => setShowCreateModal(true)}
+              className="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded-lg transition-colors flex items-center gap-2">
+              <UserPlus size={18} /> Nuevo Usuario
+            </button>
+          </div>
         </header>
 
         {deleteError && (
