@@ -1,6 +1,6 @@
-# CheckMate - Plataforma de Gestión Escolar
+# Dynamic Coporation Group - Plataforma de Gestión Escolar
 
-CheckMate es una plataforma web full-stack para administrar cursos, actividades, entregas y calificaciones dentro de un entorno escolar. El sistema permite que los estudiantes entreguen sus actividades, que los docentes revisen y califiquen manualmente esas entregas, y que el administrador controle usuarios, cursos y configuraciones generales del sistema.
+Dynamic Coporation Group es una plataforma web full-stack para administrar cursos, actividades, entregas y calificaciones dentro de un entorno escolar. El sistema permite que los estudiantes entreguen sus actividades, que los docentes revisen y califiquen manualmente esas entregas, y que el administrador controle usuarios, cursos y configuraciones generales del sistema.
 
 La aplicación está organizada en dos partes: un backend con Express, Prisma y SQLite para la lógica del negocio, y un frontend en Next.js para la interfaz de usuario. Además, incluye herramientas para exportar información, cargar usuarios en lote mediante Excel y mantener un flujo de trabajo ordenado entre los distintos roles.
 
@@ -9,13 +9,16 @@ La aplicación está organizada en dos partes: un backend con Express, Prisma y 
 La plataforma centraliza las operaciones principales de una escuela o grupo académico:
 
 - Registro y administración de usuarios.
+![alt text](src/image.png)
 - Creación y gestión de cursos y actividades.
+![alt text](src/image-1.png)
 - Entrega de tareas por parte de estudiantes.
+![alt text](src/image-4.png)
 - Revisión manual de evidencias y asignación de calificaciones por docentes.
-- Consulta de reportes y seguimiento académico.
-- Exportación de información para análisis o respaldo.
-- Configuración general del sistema.
+![alt text](src/image-3.png)
 
+- Exportación de información para análisis o respaldo.
+![alt text](src/image-5.png)
 ## Roles del Sistema
 
 ### Administrador
@@ -24,11 +27,16 @@ El administrador tiene control total sobre la plataforma y es responsable de la 
 
 **Responsabilidades principales:**
 - Crear, editar y eliminar usuarios.
+![alt text](src/image-6.png)
 - Registrar usuarios de forma individual o mediante carga masiva con Excel.
+![alt text](src/image-7.png)
 - Descargar una plantilla para preparar correctamente los datos de alta.
+![alt text](src/image-8.png)
 - Administrar cursos, actividades y configuración general.
+![alt text](src/image-9.png)
 - Consultar reportes globales del sistema.
 - Revisar el estado general de entregas y calificaciones.
+![alt text](src/image-10.png)
 
 **Funciones disponibles:**
 - Gestión de usuarios.
@@ -43,6 +51,7 @@ El docente es el encargado de supervisar el trabajo de sus grupos, revisar entre
 
 **Responsabilidades principales:**
 - Crear y administrar actividades de sus cursos.
+![alt text](src/image-11.png)
 - Revisar las entregas enviadas por los estudiantes.
 - Verificar la información y el contenido entregado.
 - Asignar calificaciones y retroalimentación directamente en el sistema.
